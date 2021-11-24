@@ -23,7 +23,8 @@ pub use rlp;
 pub use hex;
 
 use crate::types::{Address, Bytes, U256};
-use k256::{ecdsa::SigningKey, EncodedPoint as K256PublicKey};
+use elliptic_curve::sec1::ToEncodedPoint;
+use k256::{ecdsa::SigningKey, PublicKey as K256PublicKey};
 use std::ops::Neg;
 use thiserror::Error;
 
@@ -220,10 +221,9 @@ pub fn get_create2_address_from_hash(
 
 /// Converts a K256 SigningKey to an Ethereum Address
 pub fn secret_key_to_address(secret_key: &SigningKey) -> Address {
-    // TODO: Can we do this in a better way?
-    let uncompressed_pub_key =
-        K256PublicKey::from(&secret_key.verifying_key()).decompress().unwrap();
-    let public_key = uncompressed_pub_key.as_bytes();
+    let public_key = K256PublicKey::from(&secret_key.verifying_key());
+    let public_key = public_key.to_encoded_point(/* compress = */ false);
+    let public_key = public_key.as_bytes();
     debug_assert_eq!(public_key[0], 0x04);
     let hash = keccak256(&public_key[1..]);
     Address::from_slice(&hash[12..])

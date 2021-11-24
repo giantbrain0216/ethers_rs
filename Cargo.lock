@@ -467,7 +467,7 @@ dependencies = [
  "coins-core",
  "digest 0.9.0",
  "hmac",
- "k256",
+ "k256 0.9.6",
  "lazy_static",
  "serde",
  "sha2 0.9.8",
@@ -811,7 +811,9 @@ version = "0.13.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d2053aa87c218a6af2aa96e0bfa27d23278ebe613322265b7b841bc7c5cd9279"
 dependencies = [
+ "der 0.5.1",
  "elliptic-curve 0.11.1",
+ "rfc6979",
  "signature",
 ]
 
@@ -851,9 +853,9 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "beca177dcb8eb540133e7680baff45e7cc4d93bf22002676cec549f82343721b"
 dependencies = [
  "crypto-bigint 0.2.10",
- "ff",
+ "ff 0.10.1",
  "generic-array 0.14.4",
- "group",
+ "group 0.10.0",
  "pkcs8 0.7.6",
  "rand_core 0.6.3",
  "subtle",
@@ -868,7 +870,9 @@ checksum = "f73d21281779c2c22cade2a4ab34eee34271869942546a364f7d552d30c62434"
 dependencies = [
  "crypto-bigint 0.3.2",
  "der 0.5.1",
+ "ff 0.11.0",
  "generic-array 0.14.4",
+ "group 0.11.0",
  "rand_core 0.6.3",
  "sec1",
  "subtle",
@@ -1046,7 +1050,7 @@ dependencies = [
  "generic-array 0.14.4",
  "hex",
  "hex-literal",
- "k256",
+ "k256 0.10.0-pre.1",
  "once_cell",
  "proc-macro2",
  "quote",
@@ -1214,6 +1218,16 @@ name = "ff"
 version = "0.10.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d0f40b2dcd8bc322217a5f6559ae5f9e9d1de202a2ecee2e9eafcbece7562a4f"
+dependencies = [
+ "rand_core 0.6.3",
+ "subtle",
+]
+
+[[package]]
+name = "ff"
+version = "0.11.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b2958d04124b9f27f175eaeb9a9f383d026098aa837eadd8ba22c11f13a05b9e"
 dependencies = [
  "rand_core 0.6.3",
  "subtle",
@@ -1430,7 +1444,18 @@ version = "0.10.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1c363a5301b8f153d80747126a04b3c82073b9fe3130571a9d170cacdeaf7912"
 dependencies = [
- "ff",
+ "ff 0.10.1",
+ "rand_core 0.6.3",
+ "subtle",
+]
+
+[[package]]
+name = "group"
+version = "0.11.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bc5ac374b108929de78460075f3dc439fa66df9d8fc77e8f12caa5165fcf0c89"
+dependencies = [
+ "ff 0.11.0",
  "rand_core 0.6.3",
  "subtle",
 ]
@@ -1735,6 +1760,19 @@ dependencies = [
  "ecdsa 0.12.4",
  "elliptic-curve 0.10.6",
  "sha2 0.9.8",
+ "sha3",
+]
+
+[[package]]
+name = "k256"
+version = "0.10.0-pre.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "572db83b7c14a8299d28ef3de8f5ea40673dbd60f0284e14e7373214081dc7c2"
+dependencies = [
+ "cfg-if 1.0.0",
+ "ecdsa 0.13.0",
+ "elliptic-curve 0.11.1",
+ "sec1",
  "sha3",
 ]
 
@@ -2445,6 +2483,17 @@ dependencies = [
  "web-sys",
  "webpki-roots",
  "winreg",
+]
+
+[[package]]
+name = "rfc6979"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "96ef608575f6392792f9ecf7890c00086591d29a83910939d430753f7c050525"
+dependencies = [
+ "crypto-bigint 0.3.2",
+ "hmac",
+ "zeroize",
 ]
 
 [[package]]
@@ -3706,7 +3755,7 @@ dependencies = [
  "ed25519-dalek",
  "harp",
  "hmac",
- "k256",
+ "k256 0.9.6",
  "log",
  "p256",
  "p384",
