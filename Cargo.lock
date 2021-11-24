@@ -1170,7 +1170,7 @@ dependencies = [
  "semver 1.0.4",
  "serde_json",
  "sha2 0.9.8",
- "spki 0.4.1",
+ "spki 0.5.2",
  "tempfile",
  "thiserror",
  "tokio",
