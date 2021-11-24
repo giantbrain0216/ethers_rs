@@ -107,7 +107,7 @@ impl Signature {
 
         let uncompressed_pub_key = K256PublicKey::from(&verify_key).decompress();
         if let Some(public_key) = uncompressed_pub_key {
-            let public_key = public_key.to_bytes();
+            let public_key = public_key.as_bytes();
             debug_assert_eq!(public_key[0], 0x04);
             let hash = crate::utils::keccak256(&public_key[1..]);
             Ok(Address::from_slice(&hash[12..]))
